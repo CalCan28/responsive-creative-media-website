@@ -13,13 +13,38 @@ export function ContactPage() {
     message: '',
   });
   const [fileName, setFileName] = useState('');
+  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Mock form submission - In production, this would integrate with Google Workspace
-    alert('Thank you for your message! We\'ll get back to you soon.');
-    setFormData({ name: '', email: '', phone: '', message: '' });
-    setFileName('');
+    setStatus('sending');
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          access_key: '278432b4-b913-4046-8595-a6fc73eddb9b',
+          subject: `New Contact Form Submission from ${formData.name}`,
+          from_name: 'Run Horse Run Website',
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone || 'Not provided',
+          message: formData.message,
+        }),
+      });
+
+      const result = await response.json();
+      if (result.success) {
+        setStatus('success');
+        setFormData({ name: '', email: '', phone: '', message: '' });
+        setFileName('');
+      } else {
+        setStatus('error');
+      }
+    } catch {
+      setStatus('error');
+    }
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -135,11 +160,23 @@ export function ContactPage() {
                 <Button
                   type="submit"
                   size="lg"
+                  disabled={status === 'sending'}
                   className="w-full bg-[#1E3A8A] hover:bg-[#0EA5E9] text-white"
                 >
-                  Send Message
-                  <Send size={18} className="ml-2" />
+                  {status === 'sending' ? 'Sending...' : 'Send Message'}
+                  {status !== 'sending' && <Send size={18} className="ml-2" />}
                 </Button>
+
+                {status === 'success' && (
+                  <p className="text-green-600 text-center font-medium">
+                    Thank you for your message! We'll get back to you within 24 hours.
+                  </p>
+                )}
+                {status === 'error' && (
+                  <p className="text-red-600 text-center font-medium">
+                    Something went wrong. Please try again or email us directly.
+                  </p>
+                )}
               </form>
             </div>
 
