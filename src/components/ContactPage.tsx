@@ -231,17 +231,18 @@ export function ContactPage() {
                 </div>
               </div>
 
-              {/* Map Placeholder */}
+              {/* Google Maps */}
               <div className="rounded-lg overflow-hidden shadow-lg">
-                <div className="aspect-video bg-gray-200 relative">
-                  <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-[#1E3A8A]/10 to-[#0EA5E9]/10">
-                    <div className="text-center">
-                      <MapPin size={48} className="mx-auto mb-3 text-[#1E3A8A]" />
-                      <p className="text-[#6B7280] font-semibold">Google Maps Embed</p>
-                      <p className="text-sm text-[#6B7280]">(Embed map here)</p>
-                    </div>
-                  </div>
-                </div>
+                <iframe
+                  title="Run Horse Run Location"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2985.5!2d-87.3328!3d41.4728!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8811ed2ef73e3a87%3A0x0!2s8204+Pierce+Pl%2C+Merrillville%2C+IN+46410!5e0!3m2!1sen!2sus!4v1700000000000"
+                  width="100%"
+                  height="350"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
               </div>
 
               {/* Business Hours */}
