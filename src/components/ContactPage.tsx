@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Mail, Phone, MapPin, Send, Upload } from 'lucide-react';
+import { Mail, Phone, Send, Upload } from 'lucide-react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Textarea } from './ui/textarea';
@@ -214,35 +214,6 @@ export function ContactPage() {
                   </div>
                 </div>
 
-                <div className="flex items-start">
-                  <div className="w-12 h-12 bg-gradient-to-br from-[#1E3A8A] to-[#0EA5E9] rounded-lg flex items-center justify-center flex-shrink-0">
-                    <MapPin className="text-white" size={24} />
-                  </div>
-                  <div className="ml-4">
-                    <h3 className="font-semibold text-[#000000] mb-1">Location</h3>
-                    <p className="text-[#6B7280]">
-                      8204 Pierce Pl
-                      <br />
-                      Merrillville, IN 46410
-                      <br />
-                      United States
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Google Maps */}
-              <div className="rounded-lg overflow-hidden shadow-lg">
-                <iframe
-                  title="Run Horse Run Location"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2985.5!2d-87.3328!3d41.4728!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8811ed2ef73e3a87%3A0x0!2s8204+Pierce+Pl%2C+Merrillville%2C+IN+46410!5e0!3m2!1sen!2sus!4v1700000000000"
-                  width="100%"
-                  height="350"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                />
               </div>
 
               {/* Business Hours */}
