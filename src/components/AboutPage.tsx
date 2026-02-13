@@ -4,32 +4,39 @@ import calvinPhoto from 'figma:asset/a078cac02063f2eba8c61f940abf9490559f1c03.pn
 import lytonyaPhoto from 'figma:asset/59fda8377f749e0c775e5b35aa7cd6a455c25545.png';
 import kyreePhoto from 'figma:asset/5bb8848c1aa78335683ee04a6f3d4e32bd6f00e5.png';
 import edwinPhoto from 'figma:asset/cc4050e19d5656ba69f91c00dc5dba406b5d9dd5.png';
+import shanellPhoto from '../assets/shanell.jpg';
 
 export function AboutPage() {
   const team = [
     {
-      name: 'Calvin Standifer',
+      name: 'Calvin',
       role: 'Director & Cinematographer',
       image: calvinPhoto,
       bio: 'With over 15 years of experience in visual storytelling, Calvin brings a cinematic eye to every project.',
     },
     {
-      name: 'Kyree Standifer',
+      name: 'Kyree',
       role: 'Senior Programmer',
       image: kyreePhoto,
       bio: 'Kyree handles software and app development, building robust digital solutions that power our creative vision.',
     },
     {
-      name: 'Lytonya Standifer',
+      name: 'Lytonya',
       role: 'Creative Director',
       image: lytonyaPhoto,
       bio: 'Lytonya leads our web design team, creating stunning digital experiences that complement our visual work.',
     },
     {
-      name: 'Edwin Standifer',
+      name: 'Edwin',
       role: 'Marketing/Social Media',
       image: edwinPhoto,
       bio: 'Edwin handles marketing and social media for the company, amplifying our brand and connecting with audiences.',
+    },
+    {
+      name: 'Shanell',
+      role: 'Photographer & Event Coordinator',
+      image: shanellPhoto,
+      bio: 'Shanell captures compelling moments through her lens and orchestrates seamless events that bring our creative projects to life.',
     },
   ];
 
@@ -115,7 +122,7 @@ export function AboutPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
             {team.map((member) => (
               <div
                 key={member.name}
