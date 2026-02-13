@@ -5,6 +5,7 @@ import lytonyaPhoto from 'figma:asset/59fda8377f749e0c775e5b35aa7cd6a455c25545.p
 import kyreePhoto from 'figma:asset/5bb8848c1aa78335683ee04a6f3d4e32bd6f00e5.png';
 import edwinPhoto from 'figma:asset/cc4050e19d5656ba69f91c00dc5dba406b5d9dd5.png';
 import shanellPhoto from '../assets/shanell.jpg';
+import rileyPhoto from '../assets/riley.jpeg';
 
 export function AboutPage() {
   const team = [
@@ -38,6 +39,13 @@ export function AboutPage() {
       image: shanellPhoto,
       bio: 'Shanell captures compelling moments through her lens and orchestrates seamless events that bring our creative projects to life.',
       imagePosition: 'object-[center_25%]',
+    },
+    {
+      name: 'Riley',
+      role: 'Graphic & Storyboard Artist',
+      image: rileyPhoto,
+      bio: 'Riley brings concepts to life through vivid illustrations and detailed storyboards, shaping the visual direction of every project from the ground up.',
+      imagePosition: 'object-[center_20%]',
     },
   ];
 
