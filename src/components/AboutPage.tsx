@@ -37,6 +37,7 @@ export function AboutPage() {
       role: 'Photographer & Event Coordinator',
       image: shanellPhoto,
       bio: 'Shanell captures compelling moments through her lens and orchestrates seamless events that bring our creative projects to life.',
+      imagePosition: 'object-[center_25%]',
     },
   ];
 
@@ -132,7 +133,7 @@ export function AboutPage() {
                   <ImageWithFallback
                     src={member.image}
                     alt={member.name}
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                    className={`w-full h-full object-cover hover:scale-105 transition-transform duration-300 ${'imagePosition' in member ? member.imagePosition : ''}`}
                   />
                 </div>
                 <div className="p-6">
