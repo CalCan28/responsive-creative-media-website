@@ -45,7 +45,7 @@ export function AboutPage() {
       role: 'Graphic & Storyboard Artist',
       image: rileyPhoto,
       bio: 'Riley brings concepts to life through vivid illustrations and detailed storyboards, shaping the visual direction of every project from the ground up.',
-      imagePosition: 'object-[center_20%]',
+      imagePosition: 'object-[center_30%]',
     },
   ];
 
