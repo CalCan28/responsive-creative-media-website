@@ -5,6 +5,9 @@ import { HomePage } from './components/HomePage';
 import { AboutPage } from './components/AboutPage';
 import { ServicesPage } from './components/ServicesPage';
 import { ContactPage } from './components/ContactPage';
+import { ClientPreviewPage } from './components/ClientPreviewPage';
+import { ClientNotFoundPage } from './components/ClientNotFoundPage';
+import { getClientProjectById } from './data/clientProjects';
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState('home');
@@ -14,6 +17,7 @@ export default function App() {
     const handleHashChange = () => {
       const hash = window.location.hash.slice(1) || 'home';
       setCurrentPage(hash);
+      window.scrollTo(0, 0);
     };
 
     window.addEventListener('hashchange', handleHashChange);
@@ -22,7 +26,19 @@ export default function App() {
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
+  // Check if this is a client preview route
+  const isClientRoute = currentPage.startsWith('client/');
+  const clientId = isClientRoute ? currentPage.slice('client/'.length) : null;
+  const clientProject = clientId ? getClientProjectById(clientId) : null;
+
   const renderPage = () => {
+    if (isClientRoute) {
+      if (clientProject) {
+        return <ClientPreviewPage project={clientProject} />;
+      }
+      return <ClientNotFoundPage />;
+    }
+
     switch (currentPage) {
       case 'about':
         return <AboutPage />;
@@ -37,11 +53,11 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Navigation isTransparent={currentPage === 'home'} />
+      {!isClientRoute && <Navigation isTransparent={currentPage === 'home'} />}
       <main className="flex-grow">
         {renderPage()}
       </main>
-      <Footer />
+      {!isClientRoute && <Footer />}
     </div>
   );
 }

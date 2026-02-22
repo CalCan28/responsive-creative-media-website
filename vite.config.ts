@@ -3,9 +3,31 @@
   import react from '@vitejs/plugin-react-swc';
   import tailwindcss from '@tailwindcss/vite';
   import path from 'path';
+  import fs from 'fs';
+
+  // Plugin to serve client websites from public/clients/ as standalone sites
+  function serveClientSites() {
+    return {
+      name: 'serve-client-sites',
+      configureServer(server: any) {
+        server.middlewares.use((req: any, _res: any, next: any) => {
+          if (req.url?.startsWith('/clients/')) {
+            const cleanUrl = req.url.split('?')[0];
+            if (!cleanUrl.includes('.')) {
+              const filePath = path.resolve(__dirname, 'public', cleanUrl.slice(1), 'index.html');
+              if (fs.existsSync(filePath)) {
+                req.url = cleanUrl + (cleanUrl.endsWith('/') ? 'index.html' : '/index.html');
+              }
+            }
+          }
+          next();
+        });
+      },
+    };
+  }
 
   export default defineConfig({
-    plugins: [react(), tailwindcss()],
+    plugins: [serveClientSites(), react(), tailwindcss()],
     resolve: {
       extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
       alias: {
